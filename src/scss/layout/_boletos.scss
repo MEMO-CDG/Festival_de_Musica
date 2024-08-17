@@ -1,0 +1,95 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.contenedor-boletos {
+    background-color: v.$verde;
+    h3 {
+        color: v.$blanco;
+    }
+}
+.boletos {
+    
+    @include m.tablet {
+        @include m.contenedor;
+        @include m.grid(2);
+    }
+}
+
+.pase {
+    transition: transform .3s ease-in-out; 
+    /*Antes de nosotros poner el transform debemos de agregar la 
+    transición, esto para que no se vea tan brusco, el primer
+    argumento o valor que debemos de poner es a que se lo queremos
+    poner en este caso al transform, después iran los segundos, y
+    finalmente el tipo de transición*/
+    &:hover {
+        transform: scale(1.04); 
+        /*Esto nos sirve para que podamos hacer de una escala mayor 
+        algun elemento, transform es para transformar y scale es para 
+        darle la escala en la que queramos darle el tamaño 
+        Ejemplo: Si le ponemos 1 entonces se va a quedar con el mismo
+        tamaño que es 100% sin embargo si lo ponemos en 0.9 entonces
+        este lo ira haciendo mas pequeño, cuando pasamos de 1 lo va
+        haciendo más grande*/
+    }
+    &-nombre { // este amperson es para que se asigne el nombre 
+        // de la clase de arriba al lugar donde se encuentra el amperson
+        /*Esto hara que no nos genere dos clases y solo sea una 
+        para tener mucho menos código, claro esto lo podemos hacer 
+        siempre y cuando el nombre de las clases se use con BEM o que 
+        vayamos anidando los nombres*/
+        font-size: 3.6rem;
+        font-weight: 900;
+        text-align: center;
+        color: v.$blanco;
+    }
+
+    &-header,
+    &-footer {
+        padding: 0.5rem;
+
+        p {
+            text-align: center;
+            color: v.$blanco;
+            margin: 0;
+        }
+    }
+
+    &-header {
+        background-color: v.$rosa;
+        p {
+            text-transform: uppercase;
+            font-size: 2.2rem;
+            padding: 1rem 0;
+        }
+    }
+
+    &-body {
+        background-color: v.$blanco;
+        ul {
+            @include m.resetear-lista;
+            li {
+                padding: 2rem;
+                border-bottom: .1rem solid #e1e1e1;
+            }
+        }
+
+    }
+
+    &-footer {
+        background-color: v.$blanco;
+        padding: 3rem;
+        p {
+            font-size: 2.8rem;
+            font-weight: 900;
+            background-color: v.$morado;
+            padding: 1rem 0;
+            cursor: pointer;
+            transition: background-color .5s ease-in-out;
+            &:hover {
+                background-color: darken(v.$morado, 20%);
+                
+            }
+        }
+    }
+}

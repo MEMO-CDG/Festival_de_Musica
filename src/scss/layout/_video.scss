@@ -1,0 +1,55 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.video {
+    position: relative; // Si queremos poner algun texto frente a una imagen etc entonces el padre siempre debe de ser relativo
+    min-height: 50rem;
+    max-height: 70rem;
+    overflow: hidden;
+    .overlay {
+        position: absolute; // y a los hijos absoulte o al que queremos que se ponga sobre.
+        // Cuando tenemos un elemento con posicion relativa y al hijo con posicion absoluta entonces el elemento con posicion absoluta lo mandara a la part superior izquierda
+        background: linear-gradient(
+            270deg,
+            rgba(v.$morado, 60%),
+            rgba(darken(v.$morado, 20%), 90%)
+        );
+        inset: 0;
+        display: flex;
+        align-items: center;
+    }
+
+    video {
+        display: block;
+        width: auto;
+        @include m.desktop {
+            width: 100%;
+        }
+    }
+}
+
+.contenido-video {
+   z-index: 10;
+    h2 {
+        color: v.$blanco;
+        margin: 0;
+        font-size: 4rem;
+        @include m.telefono {
+            font-size: 7rem;
+        }
+    }
+
+    p {
+        font-size: 2rem;
+        color: v.$blanco;
+        background-color: v.$rosa;
+        display: inline-block;
+        margin: 0;
+        padding: .5rem 1rem;
+        font-weight: 700;
+        @include m.telefono {
+            font-size: 2.4rem;
+            padding: 1rem 2rem;
+        }
+    }
+}
